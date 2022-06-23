@@ -8,8 +8,10 @@ Use at your own risk. I'm not a Python dev, and I'm literally learning HomeAssis
 
 ## Installation
 - Create a directory called "breatheaudio" under your HA custom_components directory
-- Copy the contents of this repo to your breatheaudio directory you just created 
+- Copy the contents of this repo to your breatheaudio directory you just created
+- Go to Developer Tools and click Restart
 - Now go to Settings -> Devices & Services
+- Hold Shift -> F5 to do a hard reload of the page so the component cache gets updated or you wont see the component
 - Click "Add Integration" in the bottom right
 - Search for "BreatheAudio" and click it
 - Fill in your serial port location. Mine was /dev/ttyUSB0 but yours may vary.
