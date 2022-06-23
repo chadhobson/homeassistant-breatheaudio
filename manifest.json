@@ -1,0 +1,17 @@
+{
+  "domain": "breatheaudio",
+  "version": "1.0.0",
+  "name": "BreatheAudio 6-Zone Amplifier",
+  "documentation": "https://github.com/chadhobson/homeassistant-breatheaudio",
+  "requirements": [
+    "pyserial>=3.4",
+    "pyserial-asyncio>=0.4"
+  ],
+  "loggers": [
+    "pyserial",
+    "pyserial-asyncio",
+    "pybreatheaudio"
+  ],
+  "codeowners": ["@chadhobson"],
+  "config_flow": true
+}
