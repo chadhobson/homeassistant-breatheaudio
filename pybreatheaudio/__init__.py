@@ -50,6 +50,8 @@ class ZoneStatus(object):
         if not string:
             return None
 
+        _LOGGER.debug('Received: %s', string)
+
         # Is the zone turned off?
         match = re.search(ZONE_PATTERN_OFF, string)
         if match:
@@ -73,7 +75,7 @@ class ZoneStatus(object):
                     power = True
                     return ZoneStatus(zone, volume, power, mute, source)
                 else:
-                    volume = int(groups[3]) / MAX_VOLUME * 100
+                    volume = 100 - (int(groups[3]) / MAX_VOLUME * 100)
                     mute = False
                     power = True
                     return ZoneStatus(zone, volume, power, mute, source)
@@ -174,8 +176,8 @@ def _format_set_mute(zone: int, mute: bool) -> bytes:
 
 def _format_set_volume(zone: int, volume: int) -> bytes:
     volume_percentage = volume / 100
-    volume = int(max(0, min(MAX_VOLUME * volume_percentage, MAX_VOLUME)))
-    return '*Z0{}VOL{:02}\r'.format(zone, volume).encode()
+    volume = int(MAX_VOLUME - (MAX_VOLUME * volume_percentage))
+    return '*Z0{}VOL{:02}\r'.format(zone, max(0, min(volume, MAX_VOLUME))).encode()
 
 """ No clue how to implement these yet """
 #def _format_set_treble(zone: int, treble: int) -> bytes:
